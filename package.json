@@ -4,21 +4,24 @@
   "description": "Task management system - Jira clone",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js",
-    "build": "cd client && npm run build",
-    "install-all": "npm install && cd client && npm install",
-    "setup": "npm install && cd client && npm install && npm run build"
-  },
+  "start": "node server/index.js",
+  "server": "nodemon server/index.js",
+  "client": "npm start --prefix client",
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "build": "npm run build --prefix client",
+  "install-all": "npm install && npm install --prefix client",
+  "setup": "npm install && npm install --prefix client && npm run build"
+},
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.6.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "nodemon": "^3.0.2"
   }
 }
